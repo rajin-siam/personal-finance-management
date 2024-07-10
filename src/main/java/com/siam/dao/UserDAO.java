@@ -34,4 +34,48 @@ public class UserDAO {
 
         return user;
     }
+
+    public User getUserByUsername(String username) {
+        User user = null;
+        Connection connection = DBUtil.getConnection();
+        String sql = "SELECT * FROM users WHERE username = ?";
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, username);
+            ResultSet rs = preparedStatement.executeQuery();
+
+            if (rs.next()) {
+                user = new User();
+                user.setId(rs.getInt("id"));
+                user.setUsername(rs.getString("username"));
+                user.setPassword(rs.getString("password"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DBUtil.closeConnection(connection);
+        }
+
+        return user;
+    }
+    
+    
+    // Method to add a new user to the database
+    public void addUser(User user) {
+        Connection connection = DBUtil.getConnection();
+        String sql = "INSERT INTO users (username, password) VALUES (?, ?)";
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, user.getUsername());
+            preparedStatement.setString(2, user.getPassword());
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DBUtil.closeConnection(connection);
+        }
+    }
+
 }

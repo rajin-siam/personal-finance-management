@@ -36,7 +36,7 @@ public class LoginServlet extends HttpServlet {
             // Successful login
             HttpSession session = request.getSession();
             session.setAttribute("username", user.getUsername());
-            session.setAttribute("welcomeMessage", "Welcome to Personal Finance Management!");
+
             response.sendRedirect("welcome.jsp");
         } else {
             // Failed login
