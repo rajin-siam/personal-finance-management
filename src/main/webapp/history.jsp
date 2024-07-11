@@ -1,22 +1,27 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.List" %>
-<%@ page import="java.util.Date" %>
-<%@ page import="java.text.SimpleDateFormat" %>
-<%@ page import="com.siam.model.Transaction" %>
 <%@ page import="com.siam.dao.TransactionDAO" %>
 <%@ page import="com.siam.dao.TransactionDAOImpl" %>
-<%@page import="com.siam.model.User" %>
-
+<%@ page import="com.siam.model.Transaction" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="java.util.Date" %>
+<%@ page import="jakarta.servlet.http.HttpSession" %>
+<%@ page import="com.siam.model.User" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%
-	User user = (User) session.getAttribute("user");
-	int userId = user.getId();
-    // Fetch transactions from DAO
-    TransactionDAO transactionDAO = new TransactionDAOImpl(); // Assuming your DAO implementation
-    List<Transaction> transactions = transactionDAO.getUserTransactions(userId); // Fetch all transactions
+    // Retrieve user ID from session
+    HttpSession ses = request.getSession(false);
+    User user = (User) ses.getAttribute("user"); // Use the correct attribute name here
+    int userId = user.getId();
+    System.out.println(user.getUsername());
 
-    // Format date using DateFormatter class
+    // Initialize DAO and retrieve transactions
+    TransactionDAO transactionDAO = new TransactionDAOImpl();
+    List<Transaction> transactions = transactionDAO.getUserTransactions(userId);
+    
     SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 %>
 
@@ -42,21 +47,25 @@
     <table>
         <tr>
             <th>Transaction ID</th>
+            <th>User ID</th>
             <th>Amount</th>
             <th>Date</th>
             <th>Category</th>
             <th>Quantity</th>
             <th>Description</th>
+            <th>Action</th>
         </tr>
-        <%System.out.println(transactions.size()); %>
         <% for (Transaction transaction : transactions) { %>
         <tr>
             <td><%= transaction.getTransactionId() %></td>
+            <td><%= transaction.getUserId() %></td>
             <td><%= transaction.getAmount() %></td>
             <td><%= dateFormat.format(transaction.getDate()) %></td>
             <td><%= transaction.getCategory() %></td>
             <td><%= transaction.getQuantity() %></td>
             <td><%= transaction.getDescription() %></td>
+            <td>
+            <a href="editTransaction.jsp?id=<%= transaction.getTransactionId()%>">Edit</a></td>
         </tr>
         <% } %>
     </table>

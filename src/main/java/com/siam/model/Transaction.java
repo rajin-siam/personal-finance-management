@@ -10,6 +10,21 @@ public class Transaction {
     private String category;
     private int quantity;
     private String description;
+    
+    public Transaction() {
+    	
+    }
+    
+    public Transaction(int transactionId, int user_id, double amount, Date date, String category, int quantity, String description) {
+        this.transactionId =transactionId;
+        this.user_id = user_id;
+        this.amount = amount;
+        this.date = date;
+        this.category = category;
+        this. quantity = quantity;
+        this.description = description;
+    }
+    
 
     // Getters and Setters
     public int getTransactionId() {
