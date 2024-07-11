@@ -53,7 +53,7 @@
             <th>Category</th>
             <th>Quantity</th>
             <th>Description</th>
-            <th>Action</th>
+            <th colspan = 2>Action</th>
         </tr>
         <% for (Transaction transaction : transactions) { %>
         <tr>
@@ -66,8 +66,13 @@
             <td><%= transaction.getDescription() %></td>
             <td>
             <a href="editTransaction.jsp?id=<%= transaction.getTransactionId()%>">Edit</a></td>
+            <td>
+            <a href="deleteTransaction?id=<%=transaction.getTransactionId()%>" onclick="return confirm('Are you sure you want to delete this transaction?');">Delete</a></td>
         </tr>
         <% } %>
     </table>
+    <br>
+    <br>
+    <a href="welcome.jsp">Back to Menu Page</a></td>
 </body>
 </html>

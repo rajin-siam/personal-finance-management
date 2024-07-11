@@ -8,7 +8,7 @@ import java.util.List;
 public interface TransactionDAO {
     void addTransaction(Transaction transaction) throws SQLException;
     void updateTransaction(Transaction transaction);
- //   void deleteTransaction(int transactionId);
+    void deleteTransaction(int transactionId);
     Transaction getTransactionById(int transactionId);
  //   List<Transaction> getAllTransactions();
     public List<Transaction> getUserTransactions(int userId) ;

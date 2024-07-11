@@ -114,4 +114,15 @@ public class TransactionDAOImpl implements TransactionDAO {
             e.printStackTrace();
         }
     }
+    
+    public void deleteTransaction(int transactionId) {
+        String query = "DELETE FROM transactions WHERE id = ?";
+        try (Connection conn = DBUtil.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setInt(1, transactionId);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
