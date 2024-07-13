@@ -2,12 +2,16 @@
     pageEncoding="UTF-8"%>
 <%@ page import="com.siam.dao.TransactionDAO" %>
 <%@ page import="com.siam.dao.TransactionDAOImpl" %>
+<%@ page import="com.siam.dao.CategoryDAO" %>
+<%@ page import="com.siam.dao.CategoryDAOImpl" %>
 <%@ page import="com.siam.model.Transaction" %>
+<%@ page import="com.siam.model.Category"%>
 <%@ page import="java.util.Date" %>
 <%@ page import="java.text.SimpleDateFormat" %>
 <%@ page import="jakarta.servlet.http.HttpSession" %>
 <%@ page import="java.io.IOException" %>
 <%@ page import="java.io.PrintWriter" %>
+<%@ page import="java.util.List" %>
 
 <%
     // Retrieve transaction ID from request parameter
@@ -22,6 +26,19 @@
         response.sendRedirect("history.jsp"); // Redirect if transaction not found
     }
 %>
+
+
+
+<%
+    // Initialize DAO and retrieve categories
+    CategoryDAO categoryDAO = new CategoryDAOImpl();
+    List<Category> categories = categoryDAO.getCategories();
+%>
+
+
+
+
+
 
 <!DOCTYPE html>
 <html>
@@ -40,8 +57,24 @@
         <label for="date">Date:</label>
         <input type="date" id="date" name="date" value="<%= new SimpleDateFormat("yyyy-MM-dd").format(transaction.getDate()) %>"><br><br>
         
-        <label for="category">Category:</label>
-        <input type="text" id="category" name="category" value="<%= transaction.getCategory() %>"><br><br>
+        
+        
+        
+        <label for="category">Category:</label><br>
+        <select id="category" name="category" required>
+            <% for (Category category : categories) { %>
+                <option value="<%= category.getCategoryName() %>"
+                    <% if (category.getCategoryName().equals(transaction.getCategory())) { %>
+                        selected="selected"
+                    <% } %>
+                ><%= category.getCategoryName() %> (<%= category.getTransactionType() %>)</option>
+            <% } %>
+        </select>
+        <a href="addCategory.jsp?referer=editTransaction.jsp&id=<%=transactionId%>">Add New Category</a><br><br>
+        
+        
+        
+        
         
         <label for="quantity">Quantity:</label>
         <input type="text" id="quantity" name="quantity" value="<%= transaction.getQuantity() %>"><br><br>
