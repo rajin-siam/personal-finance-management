@@ -20,7 +20,7 @@
     // Initialize DAO and retrieve transaction details
     TransactionDAO transactionDAO = new TransactionDAOImpl();
     Transaction transaction = transactionDAO.getTransactionById(transactionId);
-	System.out.println(transaction.getAmount());
+
     // Check if transaction exists
     if (transaction == null) {
         response.sendRedirect("history.jsp"); // Redirect if transaction not found

@@ -1,5 +1,5 @@
 package com.siam.dao;
-
+import java.util.Date;
 import com.siam.model.Transaction;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -19,7 +19,7 @@ public class TransactionDAOImpl implements TransactionDAO {
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             preparedStatement.setInt(1, transaction.getUserId());
             preparedStatement.setDouble(2, transaction.getAmount());
-            preparedStatement.setString(3, transaction.getCategory());
+            preparedStatement.setString(3, transaction.getCategory().getCategoryName());
             preparedStatement.setDate(4, new java.sql.Date(transaction.getDate().getTime()));
             preparedStatement.setInt(5, transaction.getQuantity());
             preparedStatement.setString(6, transaction.getDescription());
@@ -70,6 +70,7 @@ public class TransactionDAOImpl implements TransactionDAO {
             stmt = conn.prepareStatement(sql);
             stmt.setInt(1, transactionId);
             rs = stmt.executeQuery();
+ 
 
             if (rs.next()) {
                 double amount = rs.getDouble("amount");
@@ -78,8 +79,16 @@ public class TransactionDAOImpl implements TransactionDAO {
                 int quantity = rs.getInt("quantity");
                 String description = rs.getString("description");
                 int user_id = rs.getInt("user_id");
-
-                transaction = new Transaction(transactionId, user_id,amount, date, category, quantity, description);
+                
+                transaction = new Transaction();
+                
+                transaction.setTransactionId(transactionId);
+                transaction.setUserId(user_id);
+                transaction.setAmount(amount);
+                transaction.setDate(date);
+                transaction.setCategory(category);
+                transaction.setQuantity(quantity);
+                transaction.setDescription(description);
             }
 
         } catch (SQLException e) {
@@ -99,7 +108,7 @@ public class TransactionDAOImpl implements TransactionDAO {
             
             preparedStatement.setDouble(1, transaction.getAmount());
             preparedStatement.setDate(2, new java.sql.Date(transaction.getDate().getTime()));
-            preparedStatement.setString(3, transaction.getCategory());
+            preparedStatement.setString(3, transaction.getCategory().getCategoryName());
             preparedStatement.setInt(4, transaction.getQuantity());
             preparedStatement.setString(5, transaction.getDescription());
             preparedStatement.setInt(6, transaction.getTransactionId());
@@ -125,4 +134,56 @@ public class TransactionDAOImpl implements TransactionDAO {
             e.printStackTrace();
         }
     }
+    
+    
+    
+    public List<Transaction> getTransactionsByDateRange(java.sql.Date startDate, java.sql.Date endDate) {
+        List<Transaction> transactions = new ArrayList<>();
+        String query = "SELECT * FROM transactions WHERE date >= ? AND date <= ?";
+        try (Connection conn = DBUtil.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setDate(1, new java.sql.Date(startDate.getTime()));
+            stmt.setDate(2, new java.sql.Date(endDate.getTime()));
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                Transaction transaction = new Transaction();
+                transaction.setTransactionId(rs.getInt("id"));
+                transaction.setAmount(rs.getDouble("amount"));
+                transaction.setCategory(rs.getString("category"));
+                transaction.setDate(rs.getDate("date"));
+                transaction.setQuantity(rs.getInt("quantity"));
+                transaction.setDescription(rs.getString("description"));
+                transactions.add(transaction);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return transactions;
+    }
+    
+    public List<Transaction> getTransactionsByCategory(String categoryName) {
+        List<Transaction> transactions = new ArrayList<>();
+        String query = "SELECT * FROM transactions WHERE category = ?";
+        try (Connection conn = DBUtil.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setString(1, categoryName);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                Transaction transaction = new Transaction();
+                transaction.setTransactionId(rs.getInt("id"));
+                transaction.setAmount(rs.getDouble("amount"));
+                transaction.setCategory(rs.getString("category"));
+                transaction.setDate(rs.getDate("date"));
+                transaction.setQuantity(rs.getInt("quantity"));
+                transaction.setDescription(rs.getString("description"));
+                transactions.add(transaction);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return transactions;
+    }
+
+
+
 }

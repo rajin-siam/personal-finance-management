@@ -2,6 +2,8 @@ package com.siam.dao;
 
 import com.siam.model.Transaction;
 
+
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -12,4 +14,6 @@ public interface TransactionDAO {
     Transaction getTransactionById(int transactionId);
  //   List<Transaction> getAllTransactions();
     public List<Transaction> getUserTransactions(int userId) ;
+    List<Transaction> getTransactionsByDateRange(java.sql.Date startDate, java.sql.Date endDate);
+    List<Transaction> getTransactionsByCategory(String categoryName);
 }

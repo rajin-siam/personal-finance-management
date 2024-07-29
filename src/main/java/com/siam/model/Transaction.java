@@ -1,13 +1,14 @@
 package com.siam.model;
 
 import java.util.Date;
+import com.siam.dao.*;
 
 public class Transaction {
     private int transactionId;
     private int user_id;
     private double amount;
     private Date date;
-    private String category;
+    private Category category;
     private int quantity;
     private String description;
     
@@ -15,7 +16,8 @@ public class Transaction {
     	
     }
     
-    public Transaction(int transactionId, int user_id, double amount, Date date, String category, int quantity, String description) {
+    public Transaction(int transactionId, int user_id, double amount, Date date, Category category, int quantity, String description) {
+    	
         this.transactionId =transactionId;
         this.user_id = user_id;
         this.amount = amount;
@@ -51,12 +53,14 @@ public class Transaction {
         this.date = date;
     }
 
-    public String getCategory() {
+    public Category getCategory() {
         return category;
     }
 
     public void setCategory(String category) {
-        this.category = category;
+    	CategoryDAO c = new CategoryDAOImpl();
+    	TransactionType transactionType = c.getTransactionTypeByCategory(category);
+        this.category = new Category(category, transactionType);
     }
 
     public int getQuantity() {

@@ -47,6 +47,19 @@ public class CategoryDAOImpl implements CategoryDAO {
         
         return categories;
     }
+    
+    public TransactionType getTransactionTypeByCategory(String x) {
+    	List<Category> categories = getCategories();
+    	
+    	for(Category category : categories) {
+    		if(category.getCategoryName().equals(x)) {
+    			return category.getTransactionType();
+    		}
+    	}
+    	return null;
+    }
+   
+    
 
     // Implement other methods like update, delete, getCategories, etc.
 }

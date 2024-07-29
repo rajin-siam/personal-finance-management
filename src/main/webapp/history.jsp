@@ -61,7 +61,7 @@
             <td><%= transaction.getUserId() %></td>
             <td><%= transaction.getAmount() %></td>
             <td><%= dateFormat.format(transaction.getDate()) %></td>
-            <td><%= transaction.getCategory() %></td>
+            <td><%= transaction.getCategory().getCategoryName() %></td>
             <td><%= transaction.getQuantity() %></td>
             <td><%= transaction.getDescription() %></td>
             <td>

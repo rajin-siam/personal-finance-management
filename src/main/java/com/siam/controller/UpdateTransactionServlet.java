@@ -41,7 +41,17 @@ public class UpdateTransactionServlet extends HttpServlet {
             e.printStackTrace();
         }
 
-        Transaction transaction = new Transaction(transactionId, user_id,  amount, date, category, quantity, description);
+        Transaction transaction = new Transaction();
+        
+        transaction.setTransactionId(transactionId);
+        transaction.setUserId(user_id);
+        transaction.setAmount(amount);
+        transaction.setDate(date);
+        transaction.setCategory(category);
+        transaction.setQuantity(quantity);
+        transaction.setDescription(description);
+        
+        
         transactionDAO.updateTransaction(transaction);
 
         response.sendRedirect("history.jsp");

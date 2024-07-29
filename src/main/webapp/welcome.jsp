@@ -33,7 +33,7 @@
     <ul>
         <li><a href="transaction.jsp">Add Transaction</a></li>
         <li><a href="history.jsp">View Previous Transactions</a></li>
-        <li><a href="#">View Reports</a></li>
+        <li><a href="finance">View Reports</a></li>
         <!-- Add more options as needed -->
     </ul>
     
