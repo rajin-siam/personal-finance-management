@@ -1,0 +1,62 @@
+body {
+	font-family: Arial, sans-serif;
+	background-color: #f4f4f9;
+	margin: 0;
+	padding: 0;
+	color: #333;
+}
+
+.finance-container {
+	width: 80%;
+	margin: 0 auto;
+	padding: 20px;
+	background-color: #fff;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	border-radius: 8px;
+}
+
+.header h2 {
+	text-align: center;
+	color: #007bff;
+	margin-bottom: 20px;
+}
+
+.balance-section p {
+	font-size: 1.5em;
+	text-align: center;
+	color: #28a745;
+}
+
+.balance-amount {
+	font-weight: bold;
+}
+
+.spending-category-section, .spending-year-section,
+	.spending-month-section, .spending-day-section {
+	margin-bottom: 30px;
+}
+
+h3 {
+	color: #007bff;
+	margin-bottom: 10px;
+}
+
+ul {
+	list-style-type: none;
+	padding: 0;
+}
+
+ul li {
+	background-color: #e9ecef;
+	margin: 5px 0;
+	padding: 10px;
+	border-radius: 5px;
+	font-size: 1.1em;
+	color: #495057;
+}
+
+.spending-amount {
+	font-weight: bold;
+	color: #dc3545;
+	float: right;
+}

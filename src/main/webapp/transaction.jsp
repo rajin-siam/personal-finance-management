@@ -1,15 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ page import="java.util.List" %>
-<%@ page import="com.siam.dao.CategoryDAO" %>
-<%@ page import="com.siam.dao.CategoryDAOImpl" %>
-<%@ page import="com.siam.model.Category" %>
+	pageEncoding="UTF-8"%>
+<%@ page import="java.util.List"%>
+<%@ page import="com.siam.dao.CategoryDAO"%>
+<%@ page import="com.siam.dao.CategoryDAOImpl"%>
+<%@ page import="com.siam.model.Category"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <%
-    // Initialize DAO and retrieve categories
-    CategoryDAO categoryDAO = new CategoryDAOImpl();
-    List<Category> categories = categoryDAO.getCategories();
+// Initialize DAO and retrieve categories
+CategoryDAO categoryDAO = new CategoryDAOImpl();
+List<Category> categories = categoryDAO.getCategories();
 %>
 
 <!DOCTYPE html>
@@ -17,30 +17,60 @@
 <head>
 <meta charset="UTF-8">
 <title>Add Transaction</title>
+<link rel="stylesheet" type="text/css" href="css/addTransaction.css">
 </head>
 <body>
-    <h2>Add Transaction</h2>
-    <form action="transaction" method="post">
-        <label for="amount">Money Amount:</label><br>
-        <input type="text" id="amount" name="amount" required><br><br>
+	<div class="transaction-container">
+		<div class="header">
+			<h2>Add Transaction</h2>
+		</div>
 
-        <label for="category">Category:</label><br>
-        <select id="category" name="category" required>
-            <% for (Category category : categories) { %>
-                <option value="<%= category.getCategoryName() %>"><%= category.getCategoryName() %> (<%= category.getTransactionType() %>)</option>
-            <% } %>
-        </select><br>
-        <a href="addCategory.jsp?referer=transaction.jsp">Add New Category</a><br><br>
-        <label for="date">Date:</label><br>
-        <input type="date" id="date" name="date" value="<fmt:formatDate value="${now}" pattern="yyyy-MM-dd"/>" required><br><br>
+		<div class="form-container">
+			<form action="transaction" method="post">
 
-        <label for="quantity">Quantity:</label><br>
-        <input type="text" id="quantity" name="quantity" required><br><br>
+				<div class="form-group">
+					<label for="amount">Money Amount:</label> <input type="text"
+						id="amount" name="amount" required>
+				</div>
 
-        <label for="description">Description:</label><br>
-        <textarea id="description" name="description" rows="4" cols="50"></textarea><br><br>
+				<div class="form-group">
+					<label for="category">Category:</label> <select id="category"
+						name="category" required>
+						<%
+						for (Category category : categories) {
+						%>
+						<option value="<%=category.getCategoryName()%>">
+							<%=category.getCategoryName()%> (<%=category.getTransactionType()%>)
+						</option>
+						<%
+						}
+						%>
+					</select> <a href="addCategory.jsp?referer=transaction.jsp">Add New
+						Category</a>
+				</div>
 
-        <input type="submit" value="Submit">
-    </form>
+				<div class="form-group">
+					<label for="date">Date:</label> <input type="date" id="date"
+						name="date"
+						value="<fmt:formatDate value='${now}' pattern='yyyy-MM-dd' />"
+						required>
+				</div>
+
+				<div class="form-group">
+					<label for="quantity">Quantity:</label> <input type="text"
+						id="quantity" name="quantity" required>
+				</div>
+
+				<div class="form-group">
+					<label for="description">Description:</label>
+					<textarea id="description" name="description" rows="4" required></textarea>
+				</div>
+
+				<div class="form-group">
+					<input type="submit" value="Submit">
+				</div>
+			</form>
+		</div>
+	</div>
 </body>
 </html>

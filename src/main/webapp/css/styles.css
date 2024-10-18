@@ -1,0 +1,36 @@
+body {
+	font-family: Arial, sans-serif;
+	background-color: #f9f9f9;
+	/* Light background color for a clean look */
+	margin: 0;
+	padding: 0;
+	color: #333;
+}
+
+.container {
+	text-align: center; /* Center the text and buttons */
+	padding: 50px;
+}
+
+h1 {
+	color: #007bff; /* Blue color for the header */
+}
+
+.button-container {
+	margin-top: 20px; /* Space between heading and buttons */
+}
+
+.button {
+	display: inline-block; /* Make links appear as buttons */
+	padding: 10px 20px; /* Add padding around the button */
+	margin: 10px; /* Space between buttons */
+	background-color: #007bff; /* Blue background color */
+	color: white; /* White text color */
+	text-decoration: none; /* Remove underline from links */
+	border-radius: 5px; /* Rounded corners */
+	transition: background-color 0.3s; /* Smooth background transition */
+}
+
+.button:hover {
+	background-color: #0056b3; /* Darker blue on hover */
+}

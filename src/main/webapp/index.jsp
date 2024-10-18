@@ -3,16 +3,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Personal Finance Management</title>
+    <meta charset="UTF-8">
+    <title>Personal Finance Management</title>
+    <link rel="stylesheet" type="text/css" href="css/styles.css"> <!-- Link to external CSS -->
 </head>
 <body>
-<h1>Welcome to Personal Finance Management</h1>
+    <div class="container">
+        <h1>Welcome to Personal Finance Management</h1>
 
-<a href="login.jsp">Login</a>
-<br>
-<a href="signup.jsp">SignUp</a>
-
+        <div class="button-container">
+            <a class="button" href="login.jsp">Login</a>
+            <a class="button" href="signup.jsp">Sign Up</a>
+        </div>
+    </div>
 </body>
 </html>
-
