@@ -35,7 +35,7 @@ List<Category> categories = categoryDAO.getCategories();
 
 				<div class="form-group">
 					<label for="category">Category:</label> <select id="category"
-						name="category" required>
+						name="category" required style="margin-bottom: 10px;">
 						<%
 						for (Category category : categories) {
 						%>
@@ -45,7 +45,14 @@ List<Category> categories = categoryDAO.getCategories();
 						<%
 						}
 						%>
-					</select> <a href="addCategory.jsp?referer=transaction.jsp">Add New
+					</select> <a href="addCategory.jsp?referer=transaction.jsp"  style="text-decoration: none;
+	padding: 3px;
+	background-color: #2d8ef7;
+	color: #0e0d0d;
+	font-size: 14px;
+	border-radius: 5px;
+	margin-top: 20px;
+">Add New
 						Category</a>
 				</div>
 

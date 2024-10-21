@@ -1,23 +1,39 @@
 body {
 	font-family: Arial, sans-serif;
-	background-color: #f9f9f9;
+	background: url('static/welcome.jpg');
+	background-repeat: no-repeat;
+	background-size: cover;
 	margin: 0;
 	padding: 0;
 	color: #333;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 }
 
 .welcome-container {
-	width: 50%;
+	width: 60%;
 	margin: 40px auto;
 	padding: 20px;
-	background-color: #fff;
+
 	border-radius: 10px;
 	box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+	backdrop-filter: blur(8px);
+	border: 1px solid rgba(255, 255, 255, 0.5);
+	-webkit-backdrop-filter: blur(8px);
+	padding: 40px;
 }
 
 h2 {
 	color: #007bff;
 	text-align: center;
+	font-size: 40px;
+}
+h3{
+	color: #007bff;
+	text-decoration: underline;
+	font-size: 30px;
 }
 
 .options {
@@ -26,11 +42,14 @@ h2 {
 
 .options h3 {
 	margin-bottom: 10px;
+	font-size: 30px;
 }
 
 ul {
-	list-style-type: none;
+
+	list-style-type: disc white;
 	padding: 0;
+	font-size: 30px;
 }
 
 li {
@@ -39,21 +58,28 @@ li {
 
 a {
 	text-decoration: none;
-	color: #007bff;
+	color: #2d8ef7;
 	font-weight: bold;
 }
 
 a:hover {
-	text-decoration: underline;
+	text-decoration:none;
 }
 
 .logout {
 	text-align: center;
 	margin-top: 20px;
+	padding: 10px;
+	font-size: x-large;
+
 }
 
 .logout a {
-	color: #dc3545;
+	color: #0e0d0d;
+	background-color: #e4cfd1;
+	padding: 20px;
+	border-radius: 10px;
+	margin: 20px 0px;
 }
 
 .logout a:hover {

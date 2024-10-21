@@ -3,7 +3,7 @@
 
 <%@ page import="jakarta.servlet.http.HttpSession" %>
 <%@ page import="com.siam.model.User" %>
-<% 
+<%
     response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
     response.setHeader("Pragma", "no-cache");
     response.setDateHeader("Expires", 0);

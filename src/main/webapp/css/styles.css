@@ -1,19 +1,40 @@
 body {
 	font-family: Arial, sans-serif;
-	background-color: #f9f9f9;
+	background-image: url('static/index.jpg');
+	background-repeat: no-repeat;
+	background-size: cover;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	/* Light background color for a clean look */
 	margin: 0;
 	padding: 0;
 	color: #333;
+	width: 100vw;
+	height: 100vh;
 }
 
 .container {
-	text-align: center; /* Center the text and buttons */
-	padding: 50px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+
+	width: auto;
+	height: 500px;
+	border-radius: 8px;
+	padding: 30px;
+	text-align: center;
+	border: 1px solid rgba(255, 255, 255, 0.5);
+	backdrop-filter: blur(8px);
+	-webkit-backdrop-filter: blur(8px);
 }
 
 h1 {
-	color: #007bff; /* Blue color for the header */
+	color: #8adfa4; /* Blue color for the header */
+	font-style: italic;
+	font-size: xxx-large;
 }
 
 .button-container {
@@ -22,15 +43,20 @@ h1 {
 
 .button {
 	display: inline-block; /* Make links appear as buttons */
-	padding: 10px 20px; /* Add padding around the button */
+	padding:20px 10 10px 10px; /* Add padding around the button */
 	margin: 10px; /* Space between buttons */
-	background-color: #007bff; /* Blue background color */
-	color: white; /* White text color */
+	background-color: #99b7d8; /* Blue background color */
+	color: rgb(20, 17, 17); /* White text color */
 	text-decoration: none; /* Remove underline from links */
-	border-radius: 5px; /* Rounded corners */
+	border-radius: 25px; /* Rounded corners */
 	transition: background-color 0.3s; /* Smooth background transition */
+	width: 100px;
+	height:40px;
+	font-size: x-large;
+
+
 }
 
 .button:hover {
-	background-color: #0056b3; /* Darker blue on hover */
+	background-color: #29681d; /* Darker blue on hover */
 }
