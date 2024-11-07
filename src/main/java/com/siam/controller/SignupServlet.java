@@ -48,7 +48,7 @@ public class SignupServlet extends HttpServlet {
         userDAO.addUser(newUser);
 
         HttpSession session = request.getSession();
-        session.setAttribute("username", newUser.getUsername());
+        session.setAttribute("user", newUser);
         
         // Redirect to login page after successful welcome page
         response.sendRedirect("welcome.jsp");
